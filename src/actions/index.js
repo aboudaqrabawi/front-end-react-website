@@ -14,7 +14,7 @@ export const getALLItems = () => async (dispatch) => {
 //create items 
 export const createOrder = (order) => async (dispatch) => {
   try {
-    // const { data } = await api.createOrder(order);
+    const { data } = await api.createOrder(order);
 
     dispatch({ type: "CREATE", payload: order });
     console.log( "DISPAATCH(ACTION) :",dispatch({ type: "CREATE", payload: order }))

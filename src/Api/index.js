@@ -1,5 +1,5 @@
 import  axios from 'axios';
-const url = 'https://backend-dawerha.herokuapp.com';
+const url = 'http://localhost:5000';
 //get all items
 export const fetchOrders = () => axios.get(url+'/ItemsList' );
 //create an item

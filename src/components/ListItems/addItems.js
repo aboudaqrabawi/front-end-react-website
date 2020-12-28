@@ -5,17 +5,21 @@ import { getPrice } from '../../actions';
 import { storage } from '../Profile/firbase'
 import AddNav from '../Navbar/addNav';
 import {withRouter} from 'react-router-dom';
-
+import {Link} from "react-router-dom" ;
 
 var Total=0
-const AddItems = ({ currentId }) => {
-    const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: '', price:'',image:null,user_id:localStorage.getItem('user_id') });
+const AddItems = ( props ) => {
+    const [orderData, setOrderData] = useState({  category: '', quantity: '', weight: '', description: '', price:'',image:null,location:localStorage.getItem('location')
+    ,user_id:localStorage.getItem('user_id') });
     const dispatch = useDispatch();
     const [image, setUserImage] = useState(null)
-    const onSubmit = async (e) => {
+ 
+
+    const onSubmit =  (e) => {
         e.preventDefault();
     
           dispatch(createOrder(orderData));
+          localStorage.removeItem('location') 
          window.location='/SellerItems'
 
     }
@@ -136,8 +140,12 @@ const AddItems = ({ currentId }) => {
                   onChange = {(e) => setOrderData({ ...orderData ,description : e.target.value})}
                     placeholder = " Insert a description "/>
                 </div>
+                <br />
+                <Link to ={"/map/"} >choose your location</Link>
+                <br />
                 Total: {Total}
                 <br />
+
                 
               <br />
                 <div>

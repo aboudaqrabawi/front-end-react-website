@@ -11,7 +11,7 @@ import ProtectedRoute from './ProtectedRoute';
 import EditUser from './components/Profile/EditUser'
 import Viewpage from './components/View/view';
 import {useState} from 'react';
-
+import LocationSearchModal from './components/map';
 import EditItems from './components/ListItems/EditItems'
 function App() {
 //   // we need to define this dispatch using hooks
@@ -29,6 +29,7 @@ return (
     <div>
       {/* the user can't access admin's pages */}
       <Route path="/" exact component={Viewpage} />
+      <Route path="/map"  component={LocationSearchModal} />
       <Route path="/home" component={Homepage} />
       <Route path="/sign" exact component={Sign}/>
       <ProtectedRoute path="/EditItems/:id" component={EditItems} token = {token} />
