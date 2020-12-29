@@ -2,9 +2,10 @@ import React from 'react';
 import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "react-google-maps";
 import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
-import { Button, Descriptions } from 'antd';
+import {  Descriptions } from 'antd';
 import GoogleMapReact from 'google-map-react';
 import axios from "axios";
+import Button from 'react-bootstrap/Button';
 const { MarkerWithLabel } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
 Geocode.setApiKey("AIzaSyDhdSw1QzkXBrYnLSt3EF3izfHEhUj6LMc");
 Geocode.enableDebug();
@@ -42,10 +43,8 @@ class LocationSearchModal extends React.Component {
                     () => {
                         Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
                             response => {
-                               
                                 // console.log(`https://www.latlong.net/c/?lat=${position.coords.latitude}&long=${position.coords.longitude}`)
                                 this.setState({link:`https://www.latlong.net/c/?lat=${position.coords.latitude}&long=${position.coords.longitude}`})
-                                
                                 const address = response.results[0].formatted_address,
                                     addressArray = response.results[0].address_components,
                                     city = this.getCity(addressArray),
@@ -76,7 +75,7 @@ class LocationSearchModal extends React.Component {
     //         this.state.city !== nextState.city ||
     //         this.state.area !== nextState.area ||
     //         this.state.state !== nextState.state
-    //     ) {
+    //     ) {//
     //         return true
     //     } else if (this.state.mapPosition.lat === nextState.mapPosition.lat) {
     //         return false
@@ -179,7 +178,6 @@ class LocationSearchModal extends React.Component {
         })
     };
     handleSubmit(){
-      
       var location = this.state.link;
       localStorage.setItem('location',location)
     //   console.log(location)
@@ -260,7 +258,9 @@ class LocationSearchModal extends React.Component {
                         <div style={{ height: `100%` }} />
                     }
                 />
-              <button  type="submit" onClick={this.handleSubmit.bind(this)}>submit</button>
+                 <br/>
+                 <br/>
+              <button  type="submit" className='btn btn-primary btn-lg btn-block' onClick={this.handleSubmit.bind(this)}  >save location </button>
             </div>
         )
     }
